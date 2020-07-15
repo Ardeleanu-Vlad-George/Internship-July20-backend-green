@@ -74,9 +74,9 @@ WSGI_APPLICATION = 'green.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'InternshipDB',
-        'USER': 'root',
-        'PASSWORD': 'parola',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
     }
 }
 
