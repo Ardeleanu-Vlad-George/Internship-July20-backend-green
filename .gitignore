@@ -1,3 +1,4 @@
 /venv
+green/_local_settings.py
 /.idea
-/local_settings.py
+/.DS_Store
