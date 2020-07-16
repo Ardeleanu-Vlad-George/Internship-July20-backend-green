@@ -1,6 +1,6 @@
-USER = ""
-NAME=""
-PASSWORD=""
+USER = "root"
+NAME = "Alindb"
+PASSWORD = ""
 
 DATABASES = {
     'default': {
