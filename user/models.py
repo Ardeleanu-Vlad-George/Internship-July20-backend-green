@@ -2,10 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.contrib.auth.models import AbstractUser
-
-
 # Create your models here.
-
 
 class Users(AbstractUser):
     ADMIN = 0
@@ -25,6 +22,8 @@ class Users(AbstractUser):
     weight = models.DecimalField(decimal_places=2, max_digits=3)
     age = models.IntegerField()
 
+    def first_restriction(self):
+
     def clean_first(self):
         if self.first_name == '':
             raise ValidationError('Empty field')
@@ -42,12 +41,6 @@ class Users(AbstractUser):
             raise ValidationError('Empty field')
         if not validate_email(self.email):
             raise ValidationError('Enter a correct email')
-
-    def clean_password(self):
-        if self.password == '':
-            raise ValidationError('Empty field')
-        if len(self.password) < 8:
-            raise ValidationError("Password should contain at least 8 characters")
 
     def clean_role(self):
         if self.role is None:
