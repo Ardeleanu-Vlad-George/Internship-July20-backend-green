@@ -8,9 +8,9 @@ class Users(AbstractUser):
     COACH = 1
     ATHLETE = 2
     ROLES = (
-        (0, ADMIN),
-        (1, COACH),
-        (2, ATHLETE),
+        (ADMIN, "ADMIN"),
+        (COACH, "COACH"),
+        (ATHLETE, "ATHLETE"),
     )
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -20,3 +20,6 @@ class Users(AbstractUser):
     height = models.DecimalField(decimal_places=2, max_digits=4)
     weight = models.DecimalField(decimal_places=2, max_digits=3)
     age = models.IntegerField()
+
+class Sport:
+    pass
