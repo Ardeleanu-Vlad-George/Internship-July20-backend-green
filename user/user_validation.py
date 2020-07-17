@@ -1,5 +1,7 @@
-from .rest_framework import serializers
+from rest_framework import serializers
 from user.models import Users
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
