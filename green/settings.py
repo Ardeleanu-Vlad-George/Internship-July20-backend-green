@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     # local-apps
     'user',
     'api',
+    'Sports',
+    'Workouts',
 ]
 
 REST_FRAMEWORK = {
