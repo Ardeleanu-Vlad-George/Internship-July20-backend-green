@@ -1,13 +1,13 @@
-#aplicatia clubs, se vor dezvolta modelele club+event
+
+#de facut managerii
 from django.db import models
 from user.models import Users, Sport
 
-#de facut managerii
-
+# Create your models here.
 
 class Club(models.Model):
     #id - autofield
-    #owner - fk catre user
+    #owner - fk to user
     #name - charfield
     #description - textfield
 
@@ -16,22 +16,20 @@ class Club(models.Model):
     description = models.TextField()
 #basic club structure done
 
+"""
 class Event(models.Model):
     #id - autofield
-    #club -fk catre club
-    #name - charfield
-    #description - Textfield
+    #club - fk to Club
+    #name - Charfield
+    #description - textfield
     #location - charfield
     #radius - charfield
-    #sport - fk catre sport
+    #sport - foreignkey
 
-    organizing_club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    name = models.CharField(max_length=31)
+    org_club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    name = models.CharField(max_length=51)
     description = models.TextField()
     location = models.CharField(max_length=31)
     radius = models.CharField(max_length=31)
-    event_sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
-#basic event structure done
-
-
-# Create your models here.
+    event_sport = models.ForeignKey(Sport, on_delete=models.CASCADE())
+"""
