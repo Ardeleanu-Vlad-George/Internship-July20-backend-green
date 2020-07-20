@@ -1,8 +1,12 @@
+from django.core.exceptions import MultipleObjectsReturned
 from django.db import models
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
 
 class Users(AbstractUser):
     ADMIN = 0
@@ -13,6 +17,7 @@ class Users(AbstractUser):
         (COACH, "COACH"),
         (ATHLETE, "ATHLETE"),
     )
+<<<<<<< HEAD
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
@@ -29,37 +34,29 @@ class Users(AbstractUser):
             raise ValidationError('Empty field')
         if len(self.first_name) > 30:
             raise ValidationError('Enter a correct first name')
+=======
+>>>>>>> 4460cd35eb7783b17432cbe3f3aff8d62050595c
 
-    def clean_second(self):
-        if self.last_name == '':
-            raise ValidationError('Empty field')
-        if len(self.last_name) > 30:
-            raise ValidationError('Enter a correct first name')
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True, unique=True)
+    USERNAME_FIELD = 'email'
+    password = models.CharField(max_length=100)
+    role = models.IntegerField(default=ATHLETE, choices=ROLES)
+    height = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
+    weight = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
+    age = models.IntegerField(blank=True, null=True)
+    REQUIRED_FIELDS = []
+    def __str__(self):
+        return self.first_name + self.last_name
 
-    def clean_email(self):
-        if self.email == '':
-            raise ValidationError('Empty field')
-        if not validate_email(self.email):
-            raise ValidationError('Enter a correct email')
 
-    def clean_role(self):
-        if self.role is None:
-            raise ValidationError('Empty field')
-        if self.role < 0 or self.role.isdigit() is False:
-            raise ValidationError('Enter a valid role')
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
-    def clean_age(self):
-        if self.age is None:
-            raise ValidationError('Empty field')
-        if self.age < 0 or self.age > 99 or self.age.isdigit() is False:
-            raise ValidationError('Enter a valid age')
-
-    def clean_height(self):
-        if self.height is None:
-            raise ValidationError('Empty field')
-        if self.height < 0 or self.height > 2.5 or self.role.isdigit() is False:
-            raise ValidationError('Enter a valid height')
-
+<<<<<<< HEAD
     def clean_weight(self):
         if self.weight is None:
             raise ValidationError('Empty field')
@@ -68,3 +65,5 @@ class Users(AbstractUser):
 
 class Sport:
     pass
+=======
+>>>>>>> 4460cd35eb7783b17432cbe3f3aff8d62050595c
