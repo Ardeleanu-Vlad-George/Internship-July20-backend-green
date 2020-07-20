@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     # local-apps
     'user',
     'api',
-    'Workouts',
     'Sports',
+    'Workouts',
 ]
 
 REST_FRAMEWORK = {
@@ -95,12 +95,12 @@ WSGI_APPLICATION = 'green.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/my.cnf',
-        },
-    }
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'InternshipDB',
+         'USER': 'root',
+         'PASSWORD': 'parola',
+     }
 }
 
 
