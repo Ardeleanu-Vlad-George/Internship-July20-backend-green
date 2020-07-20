@@ -13,6 +13,7 @@ class Club(models.Model):
     name = models.CharField(max_length=51)
     description = models.TextField()
 
+"""
 class Event(models.Model):
     #id - autofield
     #club - fk to Club
@@ -28,3 +29,4 @@ class Event(models.Model):
     location = models.CharField(max_length=31)
     radius = models.CharField(max_length=31)
     event_sport = models.ForeignKey(Sport, on_delete=models.CASCADE())
+"""
