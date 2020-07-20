@@ -7,7 +7,7 @@ from rest_framework import serializers
 class ClubSerializer(serializers.Serializer):
     class Meta:
         model = Club
-        fields = ['owner','name','description']
+        fields = ['owner', 'name', 'description']
 
 
 
