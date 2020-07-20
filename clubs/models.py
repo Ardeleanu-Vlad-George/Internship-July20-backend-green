@@ -1,8 +1,7 @@
 
 #de facut managerii
 from django.db import models
-from user.models import Users, Sport
-
+from user.models import Users
 # Create your models here.
 
 class Club(models.Model):

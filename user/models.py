@@ -17,25 +17,7 @@ class Users(AbstractUser):
         (COACH, "COACH"),
         (ATHLETE, "ATHLETE"),
     )
-<<<<<<< HEAD
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField()
-    password = models.CharField(max_length=30)
-    role = models.IntegerField(default=ATHLETE, choices=ROLES)
-    height = models.DecimalField(decimal_places=2, max_digits=4)
-    weight = models.DecimalField(decimal_places=2, max_digits=3)
-    age = models.IntegerField()
 
-    def first_restriction(self):
-        pass
-    def clean_first(self):
-        if self.first_name == '':
-            raise ValidationError('Empty field')
-        if len(self.first_name) > 30:
-            raise ValidationError('Enter a correct first name')
-=======
->>>>>>> 4460cd35eb7783b17432cbe3f3aff8d62050595c
 
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -55,15 +37,3 @@ class Users(AbstractUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
-
-<<<<<<< HEAD
-    def clean_weight(self):
-        if self.weight is None:
-            raise ValidationError('Empty field')
-        if self.weight < 0 or self.weight > 150:
-            raise ValidationError('Enter a valid weight')
-
-class Sport:
-    pass
-=======
->>>>>>> 4460cd35eb7783b17432cbe3f3aff8d62050595c

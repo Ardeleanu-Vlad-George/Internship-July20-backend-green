@@ -20,7 +20,7 @@ from rest_framework import routers
 from clubs import views
 
 router = routers.DefaultRouter()
-router.register(r'club',views.ClubViewSet)
+#router.register(r'club',views.ClubViewSet)
 
 
 urlpatterns = [
