@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 #to make serializers
 
-class ClubSerializer(serializers.ModelSerializer):
+class ClubSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Club
         fields = ['id', 'owner', 'name', 'description']
