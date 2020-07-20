@@ -6,5 +6,5 @@ from clubs.serialization import ClubSerializer
 # Create your views here.
 
 class ClubViewSet(viewsets.ModelViewSet):
-    queryset = Club.objects.all().order_by('-date_joined')
+    queryset = Club.objects.all().order_by('-id')
     serializer_class = ClubSerializer
