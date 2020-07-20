@@ -23,11 +23,7 @@ class Users(AbstractUser):
     age = models.IntegerField()
 
     def first_restriction(self):
-<<<<<<< HEAD
-
-=======
         pass
->>>>>>> vlad_club_event
     def clean_first(self):
         if self.first_name == '':
             raise ValidationError('Empty field')
