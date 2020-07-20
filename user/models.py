@@ -23,7 +23,7 @@ class Users(AbstractUser):
     age = models.IntegerField()
 
     def first_restriction(self):
-
+        pass
     def clean_first(self):
         if self.first_name == '':
             raise ValidationError('Empty field')

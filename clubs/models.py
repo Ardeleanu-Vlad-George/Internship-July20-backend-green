@@ -9,7 +9,7 @@ class Club(models.Model):
     #name - charfield
     #description - textfield
 
-    owner = models.ForeignKey(Users, on_delete=models.CASCADE())
+    owner = models.ForeignKey(Users, on_delete=models.CASCADE)
     name = models.CharField(max_length=51)
     description = models.TextField()
 
@@ -23,7 +23,7 @@ class Event(models.Model):
     #radius - charfield
     #sport - foreignkey
 
-    org_club = models.ForeignKey(Club, on_delete=models.CASCADE())
+    org_club = models.ForeignKey(Club, on_delete=models.CASCADE)
     name = models.CharField(max_length=51)
     description = models.TextField()
     location = models.CharField(max_length=31)
