@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.views.generic.detail import DetailView
 from rest_framework import routers
 from clubs import views
 
@@ -25,5 +25,6 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/', include('api.users.urls'))
+    path('user/', include('api.users.urls')),
+    path('clubs/', DetailView)
 ]

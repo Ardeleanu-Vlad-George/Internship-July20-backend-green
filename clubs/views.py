@@ -13,12 +13,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-'''
-class ClubViewSet(viewsets.ModelViewSet):
-    queryset = Club.objects.all().order_by('-id')
-    serializer_class = ClubSerializer
-<<<<<<< HEAD
-'''
+
 def home(request):
     #tmpl_vars = {'form': PostForm()}
     pass
