@@ -20,7 +20,13 @@ class Users(AbstractUser):
         (COACH, "COACH"),
         (ATHLETE, "ATHLETE"),
     )
-
+    MALE=0
+    FEMALE=1
+    GENDER = (
+        (MALE,"MALE"),
+        (FEMALE, "FEMALE"),
+    )
+    gender = models.IntegerField(default=MALE, choices=GENDER)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(blank=True, unique=True)

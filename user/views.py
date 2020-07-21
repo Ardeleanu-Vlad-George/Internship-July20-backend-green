@@ -14,6 +14,7 @@ import random
 import string
 # Create your views here.
 
+
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
@@ -35,6 +36,7 @@ def reset_password(request):
     else:
         return HttpResponse('Make sure all fields are entered and valid.')
 
+
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((IsAuthenticated,))
@@ -55,6 +57,7 @@ def invite(request):
     else:
         return HttpResponse('Make sure all fields are entered and valid.')
 
+
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
@@ -71,7 +74,8 @@ def registration(request):
     if Users.objects.filter(email=register_email).exists():
         return Response(status=status.HTTP_204_NO_CONTENT)
     Users.objects.create(first_name=first, last_name=last, email=register_email, password=pass_for_db)
-    return Response(status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_201_CREATED)
+
 
 def get_random_string(length):
     letters = string.ascii_lowercase
