@@ -37,7 +37,7 @@ def reset_password(request):
 
 @csrf_exempt
 @api_view(["POST"])
-@permission_classes((AllowAny,))
+@permission_classes((IsAuthenticated,))
 def invite(request):
     to_email = request.data.get("to_email")
     tuple_email = [to_email]
@@ -60,13 +60,17 @@ def invite(request):
 @permission_classes((AllowAny,))
 def registration(request):
     name_input = request.data.get("first_and_last_name")
-    first_name = name_input.split()[0]
-    last_name = name_input.split()[1]
-    email = request.data.get("email")
+    first = name_input.split()[0]
+    last = name_input.split()[1]
+    register_email = request.data.get("email")
     password = request.data.get("password")
     confirm_password = request.data.get("confirm_password")
     if password != confirm_password:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    pass_for_db = make_password(confirm_password)
+    if Users.objects.filter(email=register_email).exists():
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    Users.objects.create(first_name=first, last_name=last, email=register_email, password=pass_for_db)
     return Response(status=status.HTTP_200_OK)
 
 def get_random_string(length):
