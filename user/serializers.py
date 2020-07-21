@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from user.models import Users
 
+
 class UserSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     ADMIN = 0
@@ -22,3 +23,16 @@ class UserSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Users.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.email = validated_data.get('email', instance.email)
+        instance.password = validated_data.get('password', instance.password)
+        instance.role = validated_data('role', instance.role)
+        instance.height = validated_data('height', instance.height)
+        instance.weight = validated_data('weight', instance.weight)
+        instance.age = validated_data('age', instance.age)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
