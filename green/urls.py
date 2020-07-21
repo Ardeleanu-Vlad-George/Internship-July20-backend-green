@@ -26,5 +26,5 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('api.users.urls')),
-    path('clubs/', DetailView)
+    path('clubs/', include('clubs.urls'))
 ]

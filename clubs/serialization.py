@@ -8,9 +8,6 @@ class ClubSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Club
         fields = ['id', 'owner', 'name', 'description']
-
-
-
 """
 class EventSerializer(serializers.Serializer):
     class Meta:
