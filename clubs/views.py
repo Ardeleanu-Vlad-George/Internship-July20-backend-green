@@ -12,7 +12,7 @@ from clubs.models import Club
 
 
 @api_view(['POST'])
-@permissions_classes(permissions.IsAuthenticated,)
+@permission_classes(permissions.IsAuthenticated,)
 def new_club(request):
     serializer = ClubSerializer(data=request.data)
     if serializer.is_valid():
