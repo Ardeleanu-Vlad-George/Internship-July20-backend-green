@@ -23,7 +23,7 @@ def all_clubs(request):
         return JsonResponse({"clubs exist?": "no"})
 
 @api_view(['POST'])
-@permission_classes([permissions.IsAuthenticated, ])
+@permission_classes([permissions.AllowAny, ])
 def new_club(request):
     serializer = ClubSerializer(data=request.data)
     if serializer.is_valid():
