@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'api',
     'Sports',
     'Workouts',
+    'Events',
+    'Clubs',
+    'EventsHistory',
 ]
 
 REST_FRAMEWORK = {

@@ -21,7 +21,7 @@ from .models import Workouts
 @permission_classes((permissions.AllowAny,))
 def workout_list(request):
     if request.method == 'GET':
-        workouts = Workouts.objects.all()
+        workouts = Workouts.objects.filter(owner=request.user.id)
         serializer = WorkoutSerializer(workouts, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':

@@ -1,19 +1,20 @@
 from rest_framework import serializers
-from user import models
 from .models import Events
-from user.models import Users
+from Clubs.models import Clubs
+from Sports.models import Sports
 
-class EventsSerializer(serializers.Serializer):
-    club = serializers.PrimaryKeyRelatedField(queryset=Users.objects.all())
-    name = serializers.CharField(max_length=30)
-    description = serializers.CharField(max_length=50)
-    radius = serializers.CharField(max_length=30)
-    location = serializers.CharField(max_length=30)
-    def create(self, validated_data):
-        return Events.objects.create(**validated_data)
+
+class EventsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Events
+        fields = ['id', 'club', 'name', 'description', 'location', 'radius', 'sport']
+
     def update(self, instance, validated_data):
-        instance.club = validated_data.get('club', instance.club)
+        instance.club = Clubs.objects.get(id=validated_data.get('club', instance.club))
         instance.name = validated_data.get('name', instance.name)
         instance.description = validated_data.get('description', instance.description)
         instance.radius = validated_data.get('radius', instance.radius)
-        instance.location = validated_data('location', instance.location)
+        instance.location = validated_data.get('location', instance.location)
+        instance.sport = Sports.objects.get(id=validated_data.get('sport', instance.sport))
+        instance.save()
+        return instance

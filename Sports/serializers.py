@@ -14,7 +14,7 @@ class SportSerializer(serializers.Serializer):
         (2, TeamSports),
         (3, WeightLifting),
     )
-    type = serializers.IntegerField(default=Running, choices=TYPES)
+    type = serializers.IntegerField(default=Running)
 
     def create(self, validated_data):
         return Sports.objects.create(**validated_data)
