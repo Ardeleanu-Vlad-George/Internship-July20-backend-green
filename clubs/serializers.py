@@ -8,7 +8,3 @@ class ClubSerializer(serializers.Serializer):
 
     def create(self, validated_input):
         return Club.objects.create(**validated_input)
-
-    def update(self, instance, validated_input):
-        instance.name = validated_input.get('name', instance.name)
-        instance.description = validated_input.get('description', instance.description)
