@@ -32,33 +32,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-<<<<<<< HEAD
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
 
-
-
-
-
-    # third-party apps
-    'rest_framework',
-    'rest_framework.authtoken',
-
-
-    # local-apps
-    'user',
-    'api',
-    'clubs',
-    'Sports',
-    'Workouts',
-]
-=======
->>>>>>> master
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
