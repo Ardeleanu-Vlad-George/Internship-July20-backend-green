@@ -17,22 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.detail import DetailView
 from rest_framework import routers
-from clubs import views
+#from clubs import views
 
 router = routers.DefaultRouter()
-<<<<<<< HEAD
-#router.register(r'club',views.ClubViewSet)
-=======
-router.register(r'club', views.ClubViewSet)
->>>>>>> master
+
+#router.register(r'club', views.ClubViewSet)
+
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('user/', include('api.users.urls')),
-<<<<<<< HEAD
-    path('clubs/', include('clubs.urls'))
-=======
-    path('api/', include ('api.urls'))
->>>>>>> master
+    path('admin/', admin.site.urls)
+    #,path('user/', include('api.users.urls')),
 ]
