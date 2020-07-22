@@ -23,8 +23,6 @@ router = routers.DefaultRouter()
 
 #router.register(r'club', views.ClubViewSet)
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('api.users.urls')),
