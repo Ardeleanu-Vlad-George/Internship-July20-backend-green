@@ -14,7 +14,7 @@ class GetCoachSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'email', 'age']
 
 
-class RequestCoachSerializer(serializers.ModelSerializer):
+class CoachSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
         fields = '__all__'
@@ -27,3 +27,4 @@ class EmailSerializer(serializers.Serializer):
 class CoachRegistrationSerializer(serializers.Serializer):
     email = serializers.EmailField()
     name = serializers.CharField()
+
