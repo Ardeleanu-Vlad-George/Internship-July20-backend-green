@@ -20,15 +20,11 @@ from rest_framework import routers
 from clubs import views
 
 router = routers.DefaultRouter()
-router.register(r'club',views.ClubViewSet)
+router.register(r'club', views.ClubViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('api.users.urls')),
-<<<<<<< HEAD
-    path('api/athlete/', include('api.athlete.urls')),
-=======
     path('api/', include ('api.urls'))
->>>>>>> 827bf7070bce73d84cc06776d9a40a249405f972
 ]

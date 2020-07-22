@@ -68,6 +68,7 @@ INSTALLED_APPS = [
 
     # local-apps
     'user',
+    'clubs',
     'api',
     'Sports',
     'Events',
