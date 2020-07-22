@@ -20,7 +20,7 @@ def all_clubs(request):
     if qry_rspns:
         return JsonResponse({"nr of clubs": qry_rspns})
     else:
-        return JsonResponse({"clubs exist?": "no"})
+        return JsonResponse({"clubs exist?": False})
 
 @api_view(['POST'])
 @permission_classes([permissions.AllowAny, ])
