@@ -20,10 +20,7 @@ class Users(AbstractUser):
         (COACH, "COACH"),
         (ATHLETE, "ATHLETE"),
     )
-<<<<<<< HEAD
 
-
-=======
     MALE=0
     FEMALE=1
     GENDER = (
@@ -31,7 +28,7 @@ class Users(AbstractUser):
         (FEMALE, "FEMALE"),
     )
     gender = models.IntegerField(default=MALE, choices=GENDER)
->>>>>>> master
+
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(blank=True, unique=True)
@@ -50,8 +47,7 @@ class Users(AbstractUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
-<<<<<<< HEAD
-=======
+
 
 
 class CustomUserManager(BaseUserManager):
@@ -77,4 +73,4 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError(_('Superuser must have is_superuser=True.'))
         return self.create_user(email, password, **extra_fields)
->>>>>>> master
+
