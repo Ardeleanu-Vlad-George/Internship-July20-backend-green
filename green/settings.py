@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'api',
     'Sports',
     'Workouts',
+    'Events',
 ]
 
 REST_FRAMEWORK = {
@@ -149,7 +150,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    from .local_settings import *
+    from ._local_settings import *
 except:
     pass
 

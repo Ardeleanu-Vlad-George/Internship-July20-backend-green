@@ -7,4 +7,4 @@ class Events(models.Model):
     description = models.TextField(max_length=50)
     location = models.CharField(max_length=30)
     radius = models.CharField(max_length=30)
-    #sport = models.ForeignKey('Sports', on_delete=models.CASCADE)
+    #s port = models.ForeignKey('Sports', on_delete=models.CASCADE)

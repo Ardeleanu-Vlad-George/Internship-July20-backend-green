@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-=======
-
-from django.core.mail import send_mail
-from django.shortcuts import render
-from requests import Response
-
-from green.settings import EMAIL_HOST_USER
-
-from Events.serializers import EventsSerializer
-from rest_framework import permissions
-from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.views import APIView
-
-
-
-
-
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import permission_classes
 from rest_framework.decorators import api_view
@@ -50,8 +28,5 @@ def coach(request):
         qs = Users.objects.all()
         serializer = CoachSerializer(qs, many=True)
         return JsonResponse(serializer.data, safe=False)
-
-
->>>>>>> 4f02def6e40ad5517c54eb4b8c61177c79ac6637
 
 
