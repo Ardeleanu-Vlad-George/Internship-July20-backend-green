@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from user.models import Users
 
-class UserSerializer(serializers.Serializer):
+
+
+class UsersSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     ADMIN = 0
     COACH = 1
@@ -22,3 +24,11 @@ class UserSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Users.objects.create(**validated_data)
+
+
+
+class CoachSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = ['id', 'first_name', 'last_name', 'age']
+

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+<<<<<<< HEAD
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'Sports',
     'Workouts',
 ]
+=======
+>>>>>>> master
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -70,10 +73,33 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+INSTALLED_APPS = [
+    'rest_framework',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+
+    # third-party apps
+
+
+
+    # local-apps
+    'user',
+    'clubs',
+    'api',
+    'Sports',
+    'Events',
+    'Workouts',
 ]
 
 ROOT_URLCONF = 'green.urls'
@@ -103,7 +129,8 @@ DATABASES = {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'InternshipDB',
          'USER': 'root',
-         'PASSWORD': 'parola',
+         'PASSWORD':'parola',
+         'PORT': '3306',
      }
 }
 
@@ -153,7 +180,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    from ._local_settings import *
+    from .local_settings import *
 except:
     pass
 

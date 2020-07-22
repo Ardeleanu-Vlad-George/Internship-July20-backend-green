@@ -12,4 +12,3 @@ class Sports(models.Model):
         (3, WeightLifting),
     )
     type = models.IntegerField(default=Running, choices=TYPES)
-# Create your models here.
