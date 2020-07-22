@@ -27,7 +27,7 @@ SECRET_KEY = '=2evn58r*m)=z63yjstr)te)jwrp1-*gi1u4@hiyr#%@%^&lfq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # third-party apps
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 
 
     # local-apps
@@ -70,8 +71,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'green.urls'
 AUTH_USER_MODEL = 'user.Users'
 TEMPLATES = [

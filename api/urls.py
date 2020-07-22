@@ -1,6 +1,5 @@
-from django.urls import path
-from api.users.views import coach
+from django.urls import path, include
 
 urlpatterns = [
-    path('coach/', coach)
+    path('coach/', include('api.coach.urls')),
 ]

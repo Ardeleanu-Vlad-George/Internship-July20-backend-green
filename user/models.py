@@ -20,23 +20,24 @@ class Users(AbstractUser):
         (COACH, "COACH"),
         (ATHLETE, "ATHLETE"),
     )
-    MALE=0
-    FEMALE=1
+    MALE = 0
+    FEMALE = 1
     GENDER = (
-        (MALE,"MALE"),
+        (MALE, "MALE"),
         (FEMALE, "FEMALE"),
     )
     gender = models.IntegerField(default=MALE, choices=GENDER)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.EmailField(blank=True, unique=True)
+    email = models.EmailField(unique=True)
     USERNAME_FIELD = 'email'
     password = models.CharField(max_length=100)
     role = models.IntegerField(default=ATHLETE, choices=ROLES)
-    height = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
-    weight = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
+    height = models.DecimalField(decimal_places=1, max_digits=5, blank=True, null=True)
+    weight = models.DecimalField(decimal_places=1, max_digits=5, blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
     REQUIRED_FIELDS = []
+
     def __str__(self):
         return self.first_name + self.last_name
 
