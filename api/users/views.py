@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django.core.mail import send_mail
 from django.shortcuts import render
 from requests import Response
@@ -14,7 +14,7 @@ from rest_framework.views import APIView
 
 
 
-=======
+
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -48,7 +48,7 @@ def coach(request):
         qs = Users.objects.all()
         serializer = CoachSerializer(qs, many=True)
         return JsonResponse(serializer.data, safe=False)
->>>>>>> 827bf7070bce73d84cc06776d9a40a249405f972
+
 
 
 
