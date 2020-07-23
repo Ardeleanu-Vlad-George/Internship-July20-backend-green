@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from EventsHistory.serilazers import EventsHistorySerializer
+from EventsHistory.models import EventsHistory
 
 
 @api_view(['GET', 'POST'])
@@ -25,7 +26,7 @@ def events_list(request):
         return JsonResponse(serializer.errors, status=400)
 
 
-@api_view(['GET', 'POST', 'DELETE', 'PUT'])
+@api_view(['GET', 'POST', 'DELETE', 'PUT', 'COPY'])
 @permission_classes((permissions.AllowAny,))
 def delete_event(request, pk):
     if request.method == 'DELETE':
@@ -44,9 +45,10 @@ def delete_event(request, pk):
         serializeru = UserSerializer(users, many=True)
         return Response({"event": serializer.data, "users": serializeru.data})
     elif request.method == 'POST':
-        serializer = EventsHistorySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
-
+        Request = EventsHistory(userId=Users.objects.get(id=1), eventId=Events.objects.get(id=pk))
+        Request.save()
+        return Response({}, status=200)
+    elif request.method == 'COPY': # OPTIONAL
+        requests = EventsHistory.objects.all()
+        serializer = EventsHistorySerializer(requests, many=True)
+        return JsonResponse(serializer.data, safe=False)
