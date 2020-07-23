@@ -31,7 +31,7 @@ def coach(request):
         send_mail(subject, message, EMAIL_HOST_USER, tuple_email)
         return Response(status=status.HTTP_202_ACCEPTED)
     if request.method == "GET":
-        clubs = Clubs.objects.all()
+        coaches = Clubs.objects.all()
         serializer = GetCoachSerializer(coaches, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
