@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'Sports',
     'Workouts',
     'Events',
+    'Clubs',
 ]
 
 REST_FRAMEWORK = {

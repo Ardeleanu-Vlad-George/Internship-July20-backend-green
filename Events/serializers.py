@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from user import models
 from .models import Events
 from user.models import Users
 

@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
+from Clubs.models import Clubs
 from green.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -30,7 +31,7 @@ def coach(request):
         send_mail(subject, message, EMAIL_HOST_USER, tuple_email)
         return Response(status=status.HTTP_202_ACCEPTED)
     if request.method == "GET":
-        coaches = Users.objects.filter(role=Users.COACH)
+        clubs = Clubs.objects.all()
         serializer = GetCoachSerializer(coaches, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

@@ -1,5 +1,3 @@
-from decimal import Decimal
-
 from django.core.mail import BadHeaderError, send_mail
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import permission_classes
