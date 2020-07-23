@@ -1,14 +1,15 @@
-from django.core.exceptions import MultipleObjectsReturned
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# Create your models here.
 from django.conf import settings
+from django.db.models import SET_NULL
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+from Sports.models import Sports
 
 
 class Users(AbstractUser):
+    username = None
     ADMIN = 0
     COACH = 1
     ATHLETE = 2
@@ -17,16 +18,24 @@ class Users(AbstractUser):
         (COACH, "COACH"),
         (ATHLETE, "ATHLETE"),
     )
-
+    MALE = 0
+    FEMALE = 1
+    GENDER = (
+        (MALE, "MALE"),
+        (FEMALE, "FEMALE"),
+    )
+    gender = models.IntegerField(default=MALE, choices=GENDER)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.EmailField(blank=True, unique=True)
+    email = models.EmailField(unique=True)
     USERNAME_FIELD = 'email'
     password = models.CharField(max_length=100)
     role = models.IntegerField(default=ATHLETE, choices=ROLES)
-    height = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
-    weight = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
+    height = models.DecimalField(decimal_places=1, max_digits=5, blank=True, null=True)
+    weight = models.DecimalField(decimal_places=1, max_digits=5, blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
+    primary_sport = models.ForeignKey(Sports, on_delete=SET_NULL, null=True, related_name="primary")
+    secondary_sport = models.ForeignKey(Sports, on_delete=SET_NULL, null=True, related_name="secondary")
     REQUIRED_FIELDS = []
 
     def __str__(self):

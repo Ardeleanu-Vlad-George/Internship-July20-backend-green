@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from .models import Events
 from user.models import Users
@@ -9,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from EventsHistory.serilazers import EventsHistorySerializer
 from EventsHistory.models import EventsHistory
+
 
 
 @api_view(['GET', 'POST'])

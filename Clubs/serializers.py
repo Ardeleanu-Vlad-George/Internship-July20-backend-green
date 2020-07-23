@@ -1,17 +1,24 @@
 from rest_framework import serializers
-from user import models
-from user.models import Users
-from .models import Clubs
+from .models import Clubs, ClubUserStatus
 
 
-class ClubsSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    owner = serializers.PrimaryKeyRelatedField(queryset=Users.objects.all())
-    name = serializers.CharField(max_length=30)
-    description = serializers.CharField(max_length=30)
-    invites = serializers.CharField(max_length=500)
-    requests = serializers.CharField(max_length=500)
-    members = serializers.CharField(max_length=500)
+class ClubStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClubUserStatus
+        fields = ['user_id']
 
-    def create(self, validated_data):
-        return Clubs.objects.create(**validated_data)
+
+class ClubSerializerStatus(serializers.ModelSerializer):
+    pending = ClubStatusSerializer(data=ClubUserStatus.objects.filter(status=0), many=True, read_only=True)
+    requests = ClubStatusSerializer(data=ClubUserStatus.objects.filter(status=1), many=True, read_only=True)
+    members = ClubStatusSerializer(data=ClubUserStatus.objects.filter(status=2), many=True, read_only=True)
+
+    class Meta:
+        model = Clubs
+        fields = ['__all__', 'pending', 'requests', 'members']
+
+
+class ClubSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Clubs
+        fields = '__all__'

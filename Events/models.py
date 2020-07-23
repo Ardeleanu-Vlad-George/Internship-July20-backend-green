@@ -3,6 +3,7 @@ from Sports.models import Sports
 from Clubs.models import Clubs
 
 
+
 class Events(models.Model):
     club = models.ForeignKey(Clubs, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
