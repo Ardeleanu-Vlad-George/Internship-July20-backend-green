@@ -6,6 +6,7 @@ from rest_framework import permissions
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
 
+
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
 def events_list(request):
