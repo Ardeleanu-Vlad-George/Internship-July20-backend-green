@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticate
 from green.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
-from user.permissions import IsAdmin,IsCoach,All,IsAdminCoach
+from user.permissions import IsAdmin,IsCoach,IsAdminCoach
 from user.models import Users
 from user.serializers import UsersSerializer, AthleteSerializer
 from django.core import serializers
@@ -16,9 +16,9 @@ from django.core import serializers
 #endpoint for inviting a coach to complete profile and getting all athletes
 @csrf_exempt
 @api_view(["POST", "GET"])
-@permission_classes((IsAdminCoach,IsAdmin))
+@permission_classes((AllowAny,))
 def athlete(request):
-    if request.method == "POST":
+    if request.method == "POST" :
         name = request.data.get("name")
         email = request.data.get("email")
         tuple_email = [email]
@@ -34,7 +34,7 @@ def athlete(request):
 #end-points that allow to get, delete or edit an athlete by id
 @csrf_exempt
 @api_view(['GET', 'DELETE', 'PUT'])
-@permission_classes((All,))
+@permission_classes((IsAdminCoach,))
 def edit_athlete(request,pk):
     if request.method == 'DELETE':
         athletes = Users.objects.filter(id=request.query_params.get('id', None))
@@ -53,7 +53,7 @@ def edit_athlete(request,pk):
 
 #end-point for registration
 @api_view(['POST'])
-@permission_classes((IsAuthenticate,))
+@permission_classes((AllowAny,))
 def register_athlete(request):
     if request.method == 'POST':
         name = request.data.get("name")
