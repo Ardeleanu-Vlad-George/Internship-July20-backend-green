@@ -1,20 +1,22 @@
 from rest_framework.permissions import BasePermission
 from user.models import Users
 
-class IsAuthenticate(BasePermission):
-    k=Users
-    def has_admin_permission(self, request, view, k):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        else:
-            return k.ADMIN == request.user
-    def has_coach_permission(self, request, view, k):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        else:
-            return k.COACH == request.user
-    def has_athlete_permission(self, request, view, k):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        else:
-            return k.ATHLETE == request.user
+class IsAdmin(BasePermission):
+    def has_admin_permission(self, request, view):
+        return Users.ADMIN == request.user
+
+class IsCoach(BasePermission):
+    def has_coach_permission(self, request, view):
+        return Users.COACH == request.user
+
+class IsAthlete(BasePermission):
+    def has_athlete_permission(self, request, view):
+        return Users.ATHLETE == request.user
+
+class IsAdminCoach(BasePermission):
+    def has_admin_coach_permission(self, request, view):
+        return Users.ADMIN == request.user or Users.COACH == request.user
+
+
+
+
