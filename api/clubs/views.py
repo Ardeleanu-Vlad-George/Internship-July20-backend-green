@@ -6,8 +6,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from django.http import HttpResponse
 from user.models import Users
-from Clubs.serializers import ClubSerializerStatus, ClubSerializer
-from Clubs.models import Clubs, ClubUserStatus
+from Clubs.serializers import ClubSerializer
+from Clubs.models import Clubs
 
 
 @csrf_exempt

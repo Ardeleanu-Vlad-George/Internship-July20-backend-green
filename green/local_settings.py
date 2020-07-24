@@ -1,5 +1,5 @@
 USER = "root"
-NAME = "Alindb"
+NAME = "AlinDB"
 PASSWORD = ""
 
 DATABASES = {

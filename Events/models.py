@@ -11,3 +11,6 @@ class Events(models.Model):
     location = models.CharField(max_length=30)
     radius = models.CharField(max_length=30)
     sport = models.ForeignKey(Sports, on_delete=models.CASCADE)
+    Date_Time = models.DateTimeField(auto_now_add=True)
+
+

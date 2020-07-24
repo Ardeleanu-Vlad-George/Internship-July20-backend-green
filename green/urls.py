@@ -22,7 +22,8 @@ urlpatterns = [
     path('user/', include('api.users.urls')),
     path('api/athlete/', include('api.athlete.urls')),
     path('api/', include('api.urls')),
-    path('sports/', include('Sports.urls'))
-
+    path('sports/', include('Sports.urls')),
+    path('api/Event/', include('Events.urls')),
+    path('api/Club/', include('Clubs.urls')),
 
 ]
