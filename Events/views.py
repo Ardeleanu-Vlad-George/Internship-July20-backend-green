@@ -3,14 +3,13 @@ from django.shortcuts import render
 from .models import Events
 from user.models import Users
 from Events.serializers import EventsSerializer
-from user.serializers import UserSerializer
-from rest_framework import permissions
+from user.serializers import UsersSerializer
+from rest_framework import permissions, status
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from EventsHistory.serilazers import EventsHistorySerializer
 from EventsHistory.models import EventsHistory
-
 
 
 @api_view(['GET', 'POST'])
@@ -19,13 +18,13 @@ def events_list(request):
     if request.method == 'GET':
         events = Events.objects.all()
         serializer = EventsSerializer(events, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data, safe=False)
     elif request.method == 'POST':
         serializer = EventsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=400)
 
 
 @api_view(['GET', 'POST', 'DELETE', 'PUT', 'COPY'])
@@ -44,7 +43,7 @@ def delete_event(request, pk):
         events = Events.objects.filter(id=pk)
         serializer = EventsSerializer(events, many=True)
         users = Users.objects.filter(id=events.members)
-        serializeru = UserSerializer(users, many=True)
+        serializeru = UsersSerializer(users, many=True)
         return Response({"event": serializer.data, "users": serializeru.data})
     elif request.method == 'POST':
         Request = EventsHistory(userId=Users.objects.get(id=1), eventId=Events.objects.get(id=pk))

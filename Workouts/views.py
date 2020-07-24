@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from Workouts.serializers import WorkoutSerializer
 from .models import Workouts
 
+
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
 def workout_list(request):

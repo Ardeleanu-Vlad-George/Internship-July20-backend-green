@@ -19,6 +19,19 @@ from .serializers import UsersSerializer
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
+def registration(request):
+    serializer = UsersSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        db_password = make_password(serializer.data.get("password"))
+        Users.objects.filter(email=serializer.data.get("email")).update(password=db_password)
+        return Response(status=status.HTTP_201_CREATED)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
 def reset_password(request):
     serializer = EmailSerializer(data=request.data)
     if not serializer.is_valid():
@@ -55,19 +68,7 @@ def invite(request):
             return HttpResponse('Invalid header found.')
     else:
         return HttpResponse('Make sure all fields are entered and valid.')
-
-
-@csrf_exempt
-@api_view(["POST"])
-@permission_classes((AllowAny,))
-def registration(request):
-    serializer = UsersSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        db_password = make_password(serializer.data.get("password"))
-        Users.objects.filter(email=serializer.data.get("email")).update(password=db_password)
-        return Response(status=status.HTTP_201_CREATED)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    return HttpResponse(status=status.HTTP_201_CREATED)
 
 
 @csrf_exempt

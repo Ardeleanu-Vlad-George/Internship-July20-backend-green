@@ -15,4 +15,4 @@ class EventsHistory(models.Model):
     userId = models.ForeignKey(Users, on_delete=models.CASCADE)
     status = models.IntegerField(default=Pending, choices=STATUS)
     eventId = models.ForeignKey(Events, on_delete=models.CASCADE)
-# Create your models here.
+
