@@ -1,12 +1,15 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+<<<<<<< HEAD
+=======
+from green.permissions import IsCoach, IsAthlete
+>>>>>>> 4dc920873052c577dd63e80ebe66c9dfd0bea68c
 from user.models import Users
 from .models import Clubs, ClubUserStatus
 from .serializers import ClubSerializer
 from rest_framework import permissions, status
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
-
 
 
 @api_view(['GET', 'POST'])
@@ -65,5 +68,3 @@ def get_clubs_and_create(request):
             return Response(status=status.HTTP_302_FOUND)
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
-
-

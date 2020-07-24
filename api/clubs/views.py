@@ -10,35 +10,25 @@ from Clubs.serializers import ClubSerializer
 from Clubs.models import Clubs
 
 
-@csrf_exempt
-@api_view(["POST", "GET"])
-@permission_classes((AllowAny,))
-def club(request):
-    if request.method == "POST":
-
-        serializer = ClubSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-        if Clubs.objects.filter(name=request.data.get("name")).exists():
-            return Response(status=status.HTTP_302_FOUND)
-        serializer.save()
-        return Response(status=status.HTTP_202_ACCEPTED)
-    if request.method == "GET":
-        clubs = Clubs.objects.all()
-        serializer = ClubSerializer(clubs, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 @csrf_exempt
-@api_view(["GET"])
+@api_view(["GET", "DELETE"])
 @permission_classes((AllowAny,))
 def club_pk(request, pk):
+    if request.method == "DELETE":
+        if not Clubs.objects.filter(id=pk).exists():
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+        club = Clubs.objects.get(id=pk)
+        club.delete()
+        return Response(status=status.HTTP_200_OK)
     if request.method == "GET":
         if not Clubs.objects.filter(id=pk).exists():
             return HttpResponse(status=status.HTTP_404_NOT_FOUND)
         club = Clubs.objects.get(id=pk)
         serializer = ClubSerializer(club, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
 
 

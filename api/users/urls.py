@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.authtoken import views
-from user.views import reset_password, registration, invite, check_email
+from user.views import reset_password, registration, invite, check_email, update_profile
 
 urlpatterns = [
     path('signin/', views.obtain_auth_token),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('invite/', invite),
     path('register/validate/', check_email),
     path('register/', registration),
+    path('update_profile/', update_profile)
 
 ]

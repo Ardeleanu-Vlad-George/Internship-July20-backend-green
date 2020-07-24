@@ -7,7 +7,8 @@ from Sports.models import Sports
 class EventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Events
-        fields = ['id', 'club', 'name', 'description', 'location', 'radius', 'sport', 'Date_Time']
+        fields = '__all__'
+
 
     def update(self, instance, validated_data):
         instance.club = Clubs.objects.get(id=validated_data.get('club', instance.club))
