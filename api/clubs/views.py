@@ -11,14 +11,23 @@ from Clubs.models import Clubs, ClubUserStatus
 
 
 @csrf_exempt
-@api_view(["GET"])
+@api_view(["GET", "DELETE"])
 @permission_classes((AllowAny,))
 def club_pk(request, pk):
+    if request.method == "DELETE":
+        if not Clubs.objects.filter(id=pk).exists():
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+        club = Clubs.objects.get(id=pk)
+        club.delete()
+        return Response(status=status.HTTP_200_OK)
     if request.method == "GET":
         if not Clubs.objects.filter(id=pk).exists():
             return HttpResponse(status=status.HTTP_404_NOT_FOUND)
         club = Clubs.objects.get(id=pk)
         serializer = ClubSerializer(club, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
 
 

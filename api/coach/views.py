@@ -12,11 +12,11 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 from user.models import Users
 from user.views import get_random_string
-from user.serializers import GetCoachSerializer, CoachRegistrationSerializer
+from user.serializers import GetCoachSerializer, CoachRegistrationSerializer, CoachSerializer
 
 
 @csrf_exempt
-@api_view(["POST", "GET"])
+@api_view(["POST", "GET", "PUT"])
 @permission_classes((AllowAny,))
 def coach(request):
     if request.method == "POST":
@@ -41,6 +41,13 @@ def coach(request):
         message = message + "\nYour password is " + password
         send_mail(subject, message, EMAIL_HOST_USER, tuple_email)
         return Response(status=status.HTTP_202_ACCEPTED)
+    if request.method == "PUT":
+        coach = Users.objects.get(id=request.data.get("id"))
+        serializer = CoachSerializer(coach)
+        serializer.update(serializer.instance, request.data)
+        Clubs.objects.filter(id=request.data.get("clubs")).update(owner_id=coach.id)
+        return Response(status=status.HTTP_202_ACCEPTED)
+
     if request.method == "GET":
         coaches = Users.objects.filter(role=Users.COACH)
         serializer = GetCoachSerializer(coaches, many=True)

@@ -7,6 +7,7 @@ class ClubStatusSerializer(serializers.ModelSerializer):
         model = ClubUserStatus
         fields = ['user_id']
 
+
 class ClubSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clubs

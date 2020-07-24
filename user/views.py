@@ -30,6 +30,16 @@ def registration(request):
 
 
 @csrf_exempt
+@api_view(["PUT"])
+@permission_classes((IsAuthenticated,))
+def update_profile(request):
+    athlete = Users.objects.get(id=request.data.get("id"))
+    serializer = UsersSerializer(athlete, many=False)
+    serializer.update(serializer.instance, request.data)
+    return Response(status=status.HTTP_200_OK)
+
+
+@csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def reset_password(request):
