@@ -35,4 +35,13 @@ def new_club(request):
             return JsonResponse(ClubSerializer(alrd_clb))
     return JsonResponse(serializer.errors, status=400)
 
+@api_view([])
+@permission_classes([permissions.AllowAny, ])
+def del_club(request):
+    pass
 
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny,  ])
+def viw_club(request, id):
+    pass
