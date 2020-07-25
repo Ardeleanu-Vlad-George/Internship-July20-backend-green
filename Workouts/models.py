@@ -18,6 +18,3 @@ class Workouts(models.Model):
     workout_effectiveness = models.BooleanField()
 
 
-class Meta:
-    ordering = ['created']
-
