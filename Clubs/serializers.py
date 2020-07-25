@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Clubs #ClubUserStatus
+from .models import Clubs, ClubUserStatus
 
 
 class ClubStatusSerializer(serializers.ModelSerializer):

@@ -1,9 +1,6 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-<<<<<<< HEAD
-=======
 from green.permissions import IsCoach, IsAthlete
->>>>>>> 4dc920873052c577dd63e80ebe66c9dfd0bea68c
 from user.models import Users
 from .models import Clubs, ClubUserStatus
 from .serializers import ClubSerializer

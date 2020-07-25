@@ -12,6 +12,7 @@ from EventsHistory.serilazers import EventsHistorySerializer
 from EventsHistory.models import EventsHistory
 from django.shortcuts import render
 
+
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
 def events_list(request):
@@ -54,6 +55,7 @@ def delete_event(request, pk):
         serializer = EventsHistorySerializer(requests, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
 def get_event_by_user(request, pk):
@@ -83,6 +85,7 @@ def get_event_by_user(request, pk):
         else:
             return Response(status=400)
 
+
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))
 def join_event(request, pk):
@@ -92,6 +95,7 @@ def join_event(request, pk):
     user = Users.objects.get(id=id)
     EventsHistory.objects.create(userId=user, status=EventsHistory.Pending, eventId=event)
     return Response(status=200)
+
 
 @api_view(['POST', 'GET'])
 @permission_classes((permissions.AllowAny,))
@@ -108,7 +112,6 @@ def get_events_and_create(request):
             return Response(status=302)
         serializer.save()
         return Response(status=201)
-
 
 
 @api_view(['GET', 'POST'])
