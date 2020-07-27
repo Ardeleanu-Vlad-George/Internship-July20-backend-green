@@ -4,7 +4,7 @@ from .forms import *
 
 
 # Create your views here.
-def image_view(request):
+def image_upload(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
 
@@ -13,7 +13,12 @@ def image_view(request):
             return redirect('success')
     else:
         form = ImageForm()
-    return render(request, 'template.html', {'form': form})
+    return render(request, 'upload.html', {'form': form})
+
+def image_display(request):
+    if request.method == 'GET':
+        imgs = Image.objects.all()
+        return render( (request, 'display.html', {'Images' : imgs}) )
 
 
 def success(request):
