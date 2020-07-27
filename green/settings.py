@@ -151,6 +151,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
 try:
     from ._local_settings import *
 except:
@@ -162,3 +168,4 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "djangotestinternship@gmail.com"
 EMAIL_HOST_PASSWORD = "parolaemail"
+
