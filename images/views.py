@@ -18,7 +18,7 @@ def image_upload(request):
 def image_display(request):
     if request.method == 'GET':
         imgs = Image.objects.all()
-        return render( (request, 'display.html', {'Images' : imgs}) )
+        return render(request, 'display.html', {'Images': imgs})
 
 
 def success(request):
