@@ -6,6 +6,7 @@ from user.models import Users
 class Clubs(models.Model):
     owner = models.ForeignKey(Users, on_delete=CASCADE, blank=True, null=True)
     name = models.CharField(max_length=100)
+    description = models.TextField()
 
 
 class ClubUserStatus(models.Model):
